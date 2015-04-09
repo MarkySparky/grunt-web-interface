@@ -2,7 +2,7 @@
   "name": "web-interface",
   "version": "0.0.1",
   "description": "Provides a web interface for your grunt tasks listed in a yaml file",
-  "repository": "",
+  "repository": "https://github.com/MarkySparky/grunt-web-interface",
   "author": {
     "name": "Mark Caulfield",
     "email": "mark@ginger.land",
