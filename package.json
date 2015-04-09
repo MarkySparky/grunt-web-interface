@@ -1,0 +1,30 @@
+{
+  "name": "web-interface",
+  "version": "0.0.1",
+  "description": "Provides a web interface for your grunt tasks listed in a yaml file",
+  "repository": "",
+  "author": {
+    "name": "Mark Caulfield",
+    "email": "mark@ginger.land",
+    "url": "www.ginger.land"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt": "~0.4.2",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
