@@ -1,5 +1,5 @@
 {
-  "name": "web-interface",
+  "name": "gwwwunt",
   "version": "0.0.1",
   "description": "Provides a web interface for your grunt tasks listed in a yaml file",
   "repository": "https://github.com/MarkySparky/grunt-web-interface",
@@ -26,5 +26,11 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "express-handlebars": "^2.0.0",
+    "express.io": "^1.1.13",
+    "js-yaml": "^3.2.7",
+    "shelljs": "^0.4.0"
   }
 }

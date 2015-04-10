@@ -1,0 +1,88 @@
+default:
+  description: 'The default task for grunt'
+  tasks:
+    - show-effective-config
+    - 'newer:jshint'
+    - 'test'
+    #- 'responsive_images'
+    - 'build'
+    - 'serve'
+
+test:
+  description: 'Test task for grunt'
+  tasks:
+    - 'clean:server'
+    - 'concurrent:test'
+    - 'autoprefixer'
+    - 'karma:unit'
+    - 'clean:orphanedcoverage'
+    - 'coverage'
+
+sonar:
+  description: 'Run sonar for development'
+  tasks:
+    - 'sonarRunner:preview'
+    - 'inspect'
+
+sonar-ci:
+  description: 'Run sonar for ci'
+  tasks:
+    - 'merge-lcov'
+    - 'sonarRunner:analysis'
+
+coverage:
+  description: 'Instruments javascript files'
+  tasks:
+    - 'instrument'
+    - 'jasmine_node'
+    - 'storeCoverage'
+    - 'makeReport'
+
+build:
+  description: 'Test task for grunt'
+  tasks:
+    - 'clean'
+    - save-effective-config
+    - 'create-yaml'
+    - 'copy:yaml'
+    - 'assemble'
+    - 'clean:yaml'
+    #- 'requirejs'
+    - 'compass'
+    - 'less'
+    - 'requirejs'
+    - 'cssmin'
+    - 'copy:dist'
+
+serve:
+  description: 'Serve up the web site'
+  tasks:
+    #- 'clean:server'
+    - 'concurrent:test'
+    - 'autoprefixer'
+    - 'configureProxies:server'
+    - 'connect:livereload'
+    - 'connect:dist'
+    - 'watch'
+    - 'watch:compass'
+preview:
+  description: 'Start preview server'
+  tasks:
+    - 'express'
+    - 'express-keepalive'
+    - 'show-effective-config'
+socketio:
+  description: 'Start the socket IO server'
+  tasks:
+    - 'nodemon:socketio'
+concat-js:
+  description: 'Concatenate JS files'
+  tasks:
+    - 'concat:dist-js'
+    - 'uglify:dist-js'
+
+minify-assets:
+  description: 'Concatenate JS and CSS files'
+  tasks:
+   - 'requirejs'
+   - 'cssmin'
