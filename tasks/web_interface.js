@@ -78,10 +78,8 @@ module.exports = function(grunt) {
             });
 
             var task = req.params.task;
-            //res.write('Running "Grunt ' + task + '"');
-            // Run external tool synchronously
 
-            app.io.broadcast('server', 'broadcasting')
+            app.io.broadcast('taskupdate', 'broadcasting')
 
             var child = exec('grunt ' + task, {
                 silent: true,
@@ -89,18 +87,8 @@ module.exports = function(grunt) {
             });
 
             child.stdout.on('data', function(data) {
-                app.io.broadcast('server', {msg: data})
-                /* ... do something with data ... */
-                //res.write(data);
+                app.io.broadcast('taskupdate', {msg: data})
             });
-
-            child.on('exit', function(code) {
-                //res.end(' - done');
-            });
-
-
-
-
 
         });
 

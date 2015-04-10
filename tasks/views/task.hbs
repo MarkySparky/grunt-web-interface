@@ -15,7 +15,7 @@ io = io.connect()
 io.emit('ready')
 
 // Listen for the new visitor event.
-io.on('server', function(msg) {
+io.on('taskupdate', function(msg) {
 var myDiv = $('.terminal');
     myDiv.append(msg.msg);
     myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 50);
