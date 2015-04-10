@@ -1,0 +1,38 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="/main.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+io = io.connect()
+
+// Send the ready event.
+io.emit('ready')
+
+// Listen for the new visitor event.
+io.on('server', function(msg) {
+var myDiv = $('.terminal');
+    myDiv.append(msg.msg);
+    myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 50);
+
+})
+</script>
+
+<body>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+		<pre class="terminal">
+			Running grunt task {{name}}
+		</pre>
+		</div>
+	</div>
+</div>
+</body>

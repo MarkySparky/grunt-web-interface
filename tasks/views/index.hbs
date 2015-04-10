@@ -27,11 +27,11 @@
 	<h2>Choose a grunt task</h2>
 	<ul class="list-group">
 	{{#tasks}}
-	<li class="list-group-item"><a target="_blank"href="grunt/{{name}}">{{detail.description}}</a>
+	<li class="list-group-item"><a target="_blank"href="{{{name}}}">{{detail.description}}</a>
 
 	<ul>
 		{{#detail.tasks}}
-			<li><a target="_blank"href="grunt/{{.}}">{{.}}</a></li>
+			<li><a target="_blank"href="{{.}}">{{.}}</a></li>
 		{{/detail.tasks}}
 	</ul>
 	</li>

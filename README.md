@@ -1,6 +1,6 @@
-# web-interface
+# gwwwunt
 
-> Provides a web interface for your grunt tasks listed in a yaml file
+> Provides a web interface for your grunt tasks listed in a yaml file. Lets you run grunt tasks from the web page and displays console output.
 
 ## Getting Started
 This plugin requires Grunt.
@@ -8,25 +8,28 @@ This plugin requires Grunt.
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install web-interface --save-dev
+npm install gwwwunt --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('web-interface');
+grunt.loadNpmTasks('web-gwwwunt');
 ```
 
-## The "web_interface" task
+## The "gwwwunt" task
 
 ### Overview
-In your project's Gruntfile, add a section named `web_interface` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `gwwwunt` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
   web_interface: {
     options: {
       // Task-specific options go here.
+        port: 3007,
+        yamlPath: '.grunt/aliases.yaml',
+        keepAlive: true
     },
     your_target: {
       // Target-specific file lists and/or options go here.
@@ -37,46 +40,50 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.port
 Type: `String`
-Default value: `',  '`
+Default value: `'3007'`
 
 A string value that is used to do something with whatever.
 
-#### options.punctuation
+#### options.yamlPath
 Type: `String`
-Default value: `'.'`
+Default value: `'.grunt/aliases.yaml'`
 
 A string value that is used to do something else with whatever else.
+
+
+#### options.keepAlive
+Type: `Boolean`
+Default value: `false`
+
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to read the yaml data fro the .grunt folder. So if you use `load-grunt-config` your tasks will be listed on http://localhost:3007
 
 ```js
 grunt.initConfig({
-  web_interface: {
+  gwwwunt: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    server: {
     },
   },
 })
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, we are setting a custom port fir the web interface to 3008 and also running a keep-alive script to keep the server running.
 
 ```js
 grunt.initConfig({
-  web_interface: {
+  gwwwunt: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      port: '3008',
+      keepAlive: true
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    server: {
     },
   },
 })
