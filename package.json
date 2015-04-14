@@ -1,6 +1,6 @@
 {
   "name": "gwwwunt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Provides a web interface for your grunt tasks listed in a yaml file",
   "repository": "https://github.com/MarkySparky/gwwwunt",
   "author": {
