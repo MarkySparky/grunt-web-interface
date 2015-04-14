@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             socketIOEndpoint: 'http://localhost:3079'
         });
 
-        var io = ioClient(socketIOEndpoint);
+        var io = ioClient(options.socketIOEndpoint);
 
         // Add a connect listener
         io.on('connection', function(client) {
