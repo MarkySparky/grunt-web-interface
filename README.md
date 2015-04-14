@@ -1,5 +1,7 @@
 # gwwwunt
 
+> This is a work in progress, DO NOT USE IN PRODUCTION. It may not work yet in your environment and has only been tested in with the load-grunt-config module.
+
 > Provides a web interface for your grunt tasks listed in a yaml file. Lets you run grunt tasks from the web page and displays console output.
 
 ## Getting Started

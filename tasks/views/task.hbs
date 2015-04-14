@@ -18,7 +18,7 @@ io.emit('ready')
 io.on('taskupdate', function(msg) {
 var myDiv = $('.terminal');
     myDiv.append(msg.msg);
-    myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 50);
+    myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 20);
 
 })
 </script>
