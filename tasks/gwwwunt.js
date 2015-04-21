@@ -9,9 +9,7 @@
 'use strict';
 var app = require('express')();
 var server = require('http').createServer(app);
-//var io = require('socket.io-client')('http://localhost:3009');
 
-var ioClient = require('socket.io-client');
 
 
 var exphbs = require('express-handlebars');
@@ -31,27 +29,8 @@ module.exports = function(grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             port: '3007',
-            yamlPath: '.grunt/aliases.yaml',
-            socketIOEndpoint: 'http://localhost:3079'
+            yamlPath: '.grunt/aliases.yaml'
         });
-
-        var io = ioClient(options.socketIOEndpoint);
-
-        // Add a connect listener
-        io.on('connection', function(client) {
-            console.log('Connection to client established');
-
-            // Success!  Now listen to messages to be received
-            client.on('message', function(event) {
-                console.log('Received message from client!', event);
-            });
-
-            client.on('disconnect', function() {
-                console.log('Server has disconnected');
-            });
-        });
-
-
 
         if (options.keepAlive === true) {
             this.async();
@@ -100,21 +79,24 @@ module.exports = function(grunt) {
                 name: task
             });
 
-            io.emit('taskupdate', 'broadcasting');
+            grunt.event.emit('socketio', 'taskupdate', {
+                msg: 'broadcasting'
+            });
 
-             var child = exec('grunt ' + task, {
-                 silent: false,
-                 async: true
-             });
 
-             child.stdout.on('data', function(data) {
-                 io.emit('taskupdate', {msg: data});
-             });
+
+            var child = exec('grunt ' + task, {
+                silent: false,
+                async: true
+            });
+
+            child.stdout.on('data', function(data) {
+                grunt.event.emit('socketio', 'taskupdate', {
+                    msg: data
+                });
+            });
 
         });
-
-
-        io.on('connection', function() { /* … */ });
 
         server.listen(options.port, function() {
 
